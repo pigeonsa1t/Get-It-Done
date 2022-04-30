@@ -53,17 +53,15 @@ var displayRepos = function(repos, searchTerm) {
 
   repoSearchTerm.textContent = searchTerm;
 
-// loop over repos
-for (var i = 0; i < repos.length; i++) {
-  // format repo name
-  var repoName = queryString.split("=")[1];
-    console.log(repoName);
+  // loop over repos
+  for (var i = 0; i < repos.length; i++) {
+    // format repo name
+    var repoName = repos[i].owner.login + "/" + repos[i].name;
 
-  // create a container for each repo
-  var repoEl = document.createElement("a");
-  repoEl.classList = "list-item flex-row justify-space-between align-center";
-  repoEl.setAttribute("href", "./single-repo.html");
-  // create a span element to hold repository name
+    // create a link for each repo
+    var repoEl = document.createElement("a");
+    repoEl.classList = "list-item flex-row justify-space-between align-center";
+    repoEl.setAttribute("href", "./single-repo.html?repo=" + repoName);
 
     // create a span element to hold repository name
     var titleEl = document.createElement("span");
@@ -91,8 +89,6 @@ for (var i = 0; i < repos.length; i++) {
     repoContainerEl.appendChild(repoEl);
   }
 };
-
-
 
 // add event listeners to forms
 userFormEl.addEventListener("submit", formSubmitHandler);

@@ -2,7 +2,6 @@ var repoNameEl = document.querySelector("#repo-name");
 var issueContainerEl = document.querySelector("#issues-container");
 var limitWarningEl = document.querySelector("#limit-warning");
 
-
 var getRepoName = function() {
   // grab repo name from url query string
   var queryString = document.location.search;
@@ -18,7 +17,6 @@ var getRepoName = function() {
     document.location.replace("./index.html");
   }
 };
-
 
 var getRepoIssues = function(repo) {
   // format the github api url
@@ -43,9 +41,7 @@ var getRepoIssues = function(repo) {
   });
 };
 
-
 var displayIssues = function(issues) {
-
   if (issues.length === 0) {
     issueContainerEl.textContent = "This repo has no open issues!";
     return;
@@ -58,11 +54,11 @@ var displayIssues = function(issues) {
     issueEl.classList = "list-item flex-row justify-space-between align-center";
     issueEl.setAttribute("href", issues[i].html_url);
     issueEl.setAttribute("target", "_blank");
-    
+
     // create span to hold issue title
     var titleEl = document.createElement("span");
     titleEl.textContent = issues[i].title;
-    
+
     // append to container
     issueEl.appendChild(titleEl);
 
@@ -72,19 +68,17 @@ var displayIssues = function(issues) {
     // check if issue is an actual issue or a pull request
     if (issues[i].pull_request) {
       typeEl.textContent = "(Pull request)";
-    }
-    else {
+    } else {
       typeEl.textContent = "(Issue)";
     }
 
     // append to container
     issueEl.appendChild(typeEl);
-  
+
     // append to the dom
     issueContainerEl.appendChild(issueEl);
   }
 };
-
 
 var displayWarning = function(repo) {
   // add text to warning container
@@ -92,10 +86,12 @@ var displayWarning = function(repo) {
 
   // create link element
   var linkEl = document.createElement("a");
-    linkEl.textContent = "GitHub.com";
-    linkEl.setAttribute("href", "https://github.com/" + repo + "/issues");
-    linkEl.setAttribute("target", "_blank");
+  linkEl.textContent = "GitHub.com";
+  linkEl.setAttribute("href", "https://github.com/" + repo + "/issues");
+  linkEl.setAttribute("target", "_blank");
 
   // append to warning container
   limitWarningEl.appendChild(linkEl);
 };
+
+getRepoName();
