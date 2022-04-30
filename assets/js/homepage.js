@@ -56,7 +56,8 @@ var displayRepos = function(repos, searchTerm) {
 // loop over repos
 for (var i = 0; i < repos.length; i++) {
   // format repo name
-  var repoName = repos[i].owner.login + "/" + repos[i].name;
+  var repoName = queryString.split("=")[1];
+    console.log(repoName);
 
   // create a container for each repo
   var repoEl = document.createElement("a");
@@ -90,6 +91,8 @@ for (var i = 0; i < repos.length; i++) {
     repoContainerEl.appendChild(repoEl);
   }
 };
+
+
 
 // add event listeners to forms
 userFormEl.addEventListener("submit", formSubmitHandler);
